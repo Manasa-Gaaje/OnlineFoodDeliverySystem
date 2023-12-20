@@ -1,34 +1,38 @@
 package com.appfood.model;
 
-import java.time.LocalDateTime;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="Orderdetails")
+
 public class Order 
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
 	@Column(name="orderId")
 	private int orderId;
 	
 	@Column(name="orderDate")
-	@JsonFormat(pattern="yyyy-MM-dd")
-	private LocalDateTime orderDate;
+	private Date orderDate;
 	
 	@Column(name="orderStatus")
 	private String orderStatus;
 	
+	
 	@OneToOne(cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("bill")
+	@JoinColumn(name="billId")
 	private Bill bill;
 
 	public int getOrderId() {
@@ -39,11 +43,11 @@ public class Order
 		this.orderId = orderId;
 	}
 
-	public LocalDateTime getOrderDate() {
+	public Date getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(LocalDateTime orderDate) {
+	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
 
@@ -63,7 +67,7 @@ public class Order
 		this.bill = bill;
 	}
 
-	public Order(int orderId, LocalDateTime orderDate, String orderStatus, Bill bill) {
+	public Order(int orderId, Date orderDate, String orderStatus, Bill bill) {
 		super();
 		this.orderId = orderId;
 		this.orderDate = orderDate;
@@ -75,6 +79,7 @@ public class Order
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	
 	
 

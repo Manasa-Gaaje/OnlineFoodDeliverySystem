@@ -60,13 +60,25 @@ public class RestaurantJpaService implements RestaurantRepository
    				existingRestaurant.setRestaurantName(restaurant.getRestaurantName());
    			}
    			
+   			if(restaurant.getManagerName()!=null)
+   			{
+   				existingRestaurant.setManagerName(restaurant.getManagerName());
+   			}
+   			
+   			if(restaurant.getContactNumber()!=null)
+   			{
+   				existingRestaurant.setContactNumber(restaurant.getContactNumber());
+   			}
+   			
    			restaurantJpaRepository.save(existingRestaurant);
    			return existingRestaurant;
    		}
    		catch(Exception e)
    		{
    			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-   		}	}
+   		}	
+   		
+   	}
 
    	@Override
    	public void deleteRestaurant(int restaurantId) 

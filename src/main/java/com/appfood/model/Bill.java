@@ -1,16 +1,15 @@
 package com.appfood.model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
-import org.springframework.lang.NonNull;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -19,7 +18,7 @@ import jakarta.persistence.Table;
 public class Bill 
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
 	
 	@Column(name="billId")
@@ -27,14 +26,15 @@ public class Bill
 	
 	
 	@Column(name="billDate")
-	@JsonFormat(pattern="yyyy-MM-dd")
-	private LocalDateTime billDate;
+	private Date billDate;
 	
 	@Column(name="totalItem")
-	@NonNull
 	private int totalItem;
 	
+	
 	@OneToOne(cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("order")
+	@JoinColumn(name="orderId")
 	private Order order;
 
 	public int getBillId() {
@@ -45,11 +45,11 @@ public class Bill
 		this.billId = billId;
 	}
 
-	public LocalDateTime getBillDate() {
+	public Date getBillDate() {
 		return billDate;
 	}
 
-	public void setBillDate(LocalDateTime billDate) {
+	public void setBillDate(Date billDate) {
 		this.billDate = billDate;
 	}
 
@@ -69,7 +69,7 @@ public class Bill
 		this.order = order;
 	}
 
-	public Bill(int billId, LocalDateTime billDate, int totalItem, Order order) {
+	public Bill(int billId, Date billDate, int totalItem, Order order) {
 		super();
 		this.billId = billId;
 		this.billDate = billDate;
@@ -81,6 +81,9 @@ public class Bill
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
 
 	
 	

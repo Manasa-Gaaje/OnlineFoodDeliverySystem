@@ -1,11 +1,13 @@
 package com.appfood.model;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -15,7 +17,7 @@ import jakarta.persistence.Table;
 public class Customer 
 {
    @Id
-   @GeneratedValue(strategy=GenerationType.IDENTITY)
+   //@GeneratedValue(strategy=GenerationType.IDENTITY)
    
    
    @Column(name="customerId")
@@ -39,7 +41,9 @@ public class Customer
    @Column(name="password")
    private String password;
    
+   @Nonnull
    @OneToOne(cascade=CascadeType.ALL)
+   @JoinColumn(name="restaurantId")
    private Restaurant restaurant;
 
 public int getCustomerId() {
@@ -123,6 +127,7 @@ public Customer() {
 	super();
 	// TODO Auto-generated constructor stub
 }
+
 
 
 

@@ -59,6 +59,10 @@ public class OrderJpaService implements OrderRepository
    			{
    				existingOrder.setOrderDate(order.getOrderDate());
    			}
+   			if(order.getOrderStatus()!=null)
+   			{
+   				existingOrder.setOrderStatus(order.getOrderStatus());
+   			}
    			
    			orderJpaRepository.save(existingOrder);
    			return existingOrder;

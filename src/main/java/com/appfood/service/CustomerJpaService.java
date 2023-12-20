@@ -58,6 +58,18 @@ public class CustomerJpaService implements CustomerRepository
 				{
 					existingCustomer.setFullName(customer.getFullName());
 				}
+				if(customer.getAge()!=0)
+				{
+					existingCustomer.setAge(customerId);
+				}
+				if(customer.getEmail()!=null)
+				{
+					existingCustomer.setEmail(customer.getEmail());
+				}
+				if(customer.getPassword()!=null)
+				{
+					existingCustomer.setPassword(customer.getPassword());
+				}
 				
 				customerJpaRepository.save(existingCustomer);
 				return existingCustomer;
@@ -65,7 +77,8 @@ public class CustomerJpaService implements CustomerRepository
 			catch(Exception e)
 			{
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-			}	}
+			}	
+		}
 
 		@Override
 		public void deleteCustomer(int customerId) 

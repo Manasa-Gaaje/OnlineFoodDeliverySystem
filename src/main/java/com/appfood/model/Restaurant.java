@@ -17,7 +17,7 @@ public class Restaurant
 {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
     @Column(name="restaurantId")
 	private int restaurantId;
@@ -33,6 +33,8 @@ public class Restaurant
 	
 	@OneToMany(targetEntity=Item.class,cascade=CascadeType.ALL)
 	private List<Item> itemList=new ArrayList<>();
+	
+	
 
 	public int getRestaurantId() {
 		return restaurantId;
