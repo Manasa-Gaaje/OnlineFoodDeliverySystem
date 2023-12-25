@@ -28,12 +28,6 @@ public class Order
 	
 	@Column(name="orderStatus")
 	private String orderStatus;
-	
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JsonIgnoreProperties("bill")
-	@JoinColumn(name="billId")
-	private Bill bill;
 
 	public int getOrderId() {
 		return orderId;
@@ -59,27 +53,20 @@ public class Order
 		this.orderStatus = orderStatus;
 	}
 
-	public Bill getBill() {
-		return bill;
-	}
-
-	public void setBill(Bill bill) {
-		this.bill = bill;
-	}
-
-	public Order(int orderId, Date orderDate, String orderStatus, Bill bill) {
+	public Order(int orderId, Date orderDate, String orderStatus) {
 		super();
 		this.orderId = orderId;
 		this.orderDate = orderDate;
 		this.orderStatus = orderStatus;
-		this.bill = bill;
 	}
 
 	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
+	
 	
 	
 
