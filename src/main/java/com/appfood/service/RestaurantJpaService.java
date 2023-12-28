@@ -65,13 +65,15 @@ public class RestaurantJpaService implements RestaurantRepository
    				existingRestaurant.setManagerName(restaurant.getManagerName());
    			}
    			
-   			if(restaurant.getContactNumber()!=null)
+   			if(restaurant.getContactNumber()!=0)
    			{
    				existingRestaurant.setContactNumber(restaurant.getContactNumber());
    			}
    			
-   			restaurantJpaRepository.save(existingRestaurant);
-   			return existingRestaurant;
+            return restaurantJpaRepository.save(existingRestaurant);
+
+   			
+   			
    		}
    		catch(Exception e)
    		{

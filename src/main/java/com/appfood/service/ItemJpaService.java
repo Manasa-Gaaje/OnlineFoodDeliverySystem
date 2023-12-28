@@ -64,8 +64,9 @@ public class ItemJpaService implements ItemRepository
    			   existingItem.setQuantity(itemId);	
    			}
    			
-   			itemJpaRepository.save(existingItem);
-   			return existingItem;
+   		 return itemJpaRepository.save(existingItem);
+   			
+   			
    		}
    		catch(Exception e)
    		{

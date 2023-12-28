@@ -63,9 +63,9 @@ public class BillJpaService implements BillRepository
 				existingBill.setTotalItem(bill.getTotalItem());
 			}
 			
+			return billJpaRepository.save(existingBill);
 			
-			billJpaRepository.save(existingBill);
-			return existingBill;
+			
 		}
 		catch(Exception e)
 		{

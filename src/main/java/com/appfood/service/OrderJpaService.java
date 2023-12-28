@@ -64,8 +64,9 @@ public class OrderJpaService implements OrderRepository
    				existingOrder.setOrderStatus(order.getOrderStatus());
    			}
    			
-   			orderJpaRepository.save(existingOrder);
-   			return existingOrder;
+            return orderJpaRepository.save(existingOrder);
+
+   			
    		}
    		catch(Exception e)
    		{

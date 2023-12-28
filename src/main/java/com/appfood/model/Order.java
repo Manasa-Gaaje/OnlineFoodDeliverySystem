@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -28,6 +29,10 @@ public class Order
 	
 	@Column(name="orderStatus")
 	private String orderStatus;
+	
+	@ManyToOne
+	@JoinColumn(name = "customerId")
+	private Customer customer;
 
 	public int getOrderId() {
 		return orderId;
@@ -53,20 +58,28 @@ public class Order
 		this.orderStatus = orderStatus;
 	}
 
-	public Order(int orderId, Date orderDate, String orderStatus) {
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Order(int orderId, Date orderDate, String orderStatus, Customer customer) {
 		super();
 		this.orderId = orderId;
 		this.orderDate = orderDate;
 		this.orderStatus = orderStatus;
+		this.customer = customer;
 	}
 
 	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+
+
 	
 	
 

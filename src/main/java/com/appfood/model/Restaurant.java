@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,12 +30,11 @@ public class Restaurant
 	private String managerName;
 	
 	@Column(name="contactNumber")
-	private String contactNumber;
+	private Long contactNumber;
 	
 	@OneToMany(targetEntity=Item.class,cascade=CascadeType.ALL)
 	private List<Item> itemList=new ArrayList<>();
-	
-	
+
 
 	public int getRestaurantId() {
 		return restaurantId;
@@ -60,11 +60,11 @@ public class Restaurant
 		this.managerName = managerName;
 	}
 
-	public String getContactNumber() {
+	public Long getContactNumber() {
 		return contactNumber;
 	}
 
-	public void setContactNumber(String contactNumber) {
+	public void setContactNumber(Long contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 
@@ -76,7 +76,7 @@ public class Restaurant
 		this.itemList = itemList;
 	}
 
-	public Restaurant(int restaurantId, String restaurantName, String managerName, String contactNumber,
+	public Restaurant(int restaurantId, String restaurantName, String managerName, Long contactNumber,
 			List<Item> itemList) {
 		super();
 		this.restaurantId = restaurantId;
@@ -90,6 +90,9 @@ public class Restaurant
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
 	
 	
 	

@@ -54,6 +54,7 @@ public class CustomerJpaService implements CustomerRepository
 			try
 			{
 				Customer existingCustomer=customerJpaRepository.findById(customerId).get();
+				
 				if(customer.getFullName()!=null)
 				{
 					existingCustomer.setFullName(customer.getFullName());
@@ -71,8 +72,8 @@ public class CustomerJpaService implements CustomerRepository
 					existingCustomer.setPassword(customer.getPassword());
 				}
 				
-				customerJpaRepository.save(existingCustomer);
-				return existingCustomer;
+				return customerJpaRepository.save(existingCustomer);
+				
 			}
 			catch(Exception e)
 			{

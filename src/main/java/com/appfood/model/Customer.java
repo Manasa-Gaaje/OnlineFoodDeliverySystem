@@ -33,7 +33,7 @@ public class Customer
    private String gender;
    
    @Column(name="mobileNumber")
-   private String mobileNumber;
+   private Long mobileNumber;
    
    @Column(name="email")
    private String email;
@@ -41,10 +41,11 @@ public class Customer
    @Column(name="password")
    private String password;
    
-   @Nonnull
+   /*@Nonnull
    @OneToOne(cascade=CascadeType.ALL)
    @JoinColumn(name="restaurantId")
    private Restaurant restaurant;
+   */
 
 public int getCustomerId() {
 	return customerId;
@@ -78,11 +79,11 @@ public void setGender(String gender) {
 	this.gender = gender;
 }
 
-public String getMobileNumber() {
+public Long getMobileNumber() {
 	return mobileNumber;
 }
 
-public void setMobileNumber(String mobileNumber) {
+public void setMobileNumber(Long mobileNumber) {
 	this.mobileNumber = mobileNumber;
 }
 
@@ -102,16 +103,8 @@ public void setPassword(String password) {
 	this.password = password;
 }
 
-public Restaurant getRestaurant() {
-	return restaurant;
-}
-
-public void setRestaurant(Restaurant restaurant) {
-	this.restaurant = restaurant;
-}
-
-public Customer(int customerId, String fullName, int age, String gender, String mobileNumber, String email,
-		String password, Restaurant restaurant) {
+public Customer(int customerId, String fullName, int age, String gender, Long mobileNumber, String email,
+		String password) {
 	super();
 	this.customerId = customerId;
 	this.fullName = fullName;
@@ -120,13 +113,14 @@ public Customer(int customerId, String fullName, int age, String gender, String 
 	this.mobileNumber = mobileNumber;
 	this.email = email;
 	this.password = password;
-	this.restaurant = restaurant;
 }
 
 public Customer() {
 	super();
 	// TODO Auto-generated constructor stub
 }
+   
+  
 
 
 
