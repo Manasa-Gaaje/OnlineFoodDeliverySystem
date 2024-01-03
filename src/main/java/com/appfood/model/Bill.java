@@ -33,7 +33,6 @@ public class Bill
 	
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JsonIgnoreProperties("order")
 	@JoinColumn(name="orderId")
 	private Order order;
 

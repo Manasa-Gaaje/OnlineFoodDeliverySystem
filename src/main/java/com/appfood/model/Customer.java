@@ -41,11 +41,7 @@ public class Customer
    @Column(name="password")
    private String password;
    
-   /*@Nonnull
-   @OneToOne(cascade=CascadeType.ALL)
-   @JoinColumn(name="restaurantId")
-   private Restaurant restaurant;
-   */
+  
 
 public int getCustomerId() {
 	return customerId;

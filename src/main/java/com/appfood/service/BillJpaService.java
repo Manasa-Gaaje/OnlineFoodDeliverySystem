@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import com.appfood.model.Bill;
+import com.appfood.model.Order;
 import com.appfood.repository.BillJpaRepository;
 import com.appfood.repository.BillRepository;
+import com.appfood.repository.OrderJpaRepository;
 
 
 @Service
@@ -16,6 +18,13 @@ public class BillJpaService implements BillRepository
 {
 	@Autowired
 	private BillJpaRepository billJpaRepository;
+	
+	@Autowired
+	private OrderJpaRepository orderJpaRepository;
+	
+	
+	@Autowired
+	private OrderJpaService orderJpaService;
 	
 	@Override
 	public ArrayList<Bill> getBill() 
@@ -43,9 +52,31 @@ public class BillJpaService implements BillRepository
 	@Override
 	public Bill addBill(Bill bill) 
 	{
+		//Order order=bill.getOrder();
+		//Order existingOrder=orderJpaRepository.
+		//orderJpaService.updateOrder(order.getOrderId(),bill.getOrder());
+		//billJpaRepository.save(bill);
+	     // return bill;
+		//Order order=orderJpaRepository.findById(orderId).get();
+		Order order=bill.getOrder();
+		int orderId=order.getOrderId();
+		Order order1=orderJpaRepository.findById(orderId).get();
+		bill.setOrder(order1);
+		//Order order = bill.getOrder();	    
+	    //if (order != null) 
+	   // {
+	        
+	     //   orderJpaRepository.save(order);
+	      //  bill.setOrder(order);
+	      //  billJpaRepository.save(bill);
+
+	         
+	    //}
+		
 		billJpaRepository.save(bill);
-	      return bill;
+		return bill; 
 	}
+	
 
 	@Override
 	public Bill updateBill(int billId, Bill bill) 

@@ -61,7 +61,7 @@ public class CustomerJpaService implements CustomerRepository
 				}
 				if(customer.getAge()!=0)
 				{
-					existingCustomer.setAge(customerId);
+					existingCustomer.setAge(customer.getAge());
 				}
 				if(customer.getEmail()!=null)
 				{

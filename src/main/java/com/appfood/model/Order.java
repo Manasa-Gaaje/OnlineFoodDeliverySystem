@@ -18,9 +18,9 @@ import jakarta.persistence.Table;
 
 public class Order 
 {
-	@Id
-	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
 	@Column(name="orderId")
 	private int orderId;
 	
@@ -29,6 +29,9 @@ public class Order
 	
 	@Column(name="orderStatus")
 	private String orderStatus;
+	
+	@OneToOne
+	private Bill bill;
 	
 	@ManyToOne
 	@JoinColumn(name = "customerId")
@@ -58,6 +61,14 @@ public class Order
 		this.orderStatus = orderStatus;
 	}
 
+	public Bill getBill() {
+		return bill;
+	}
+
+	public void setBill(Bill bill) {
+		this.bill = bill;
+	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -66,11 +77,12 @@ public class Order
 		this.customer = customer;
 	}
 
-	public Order(int orderId, Date orderDate, String orderStatus, Customer customer) {
+	public Order(int orderId, Date orderDate, String orderStatus, Bill bill, Customer customer) {
 		super();
 		this.orderId = orderId;
 		this.orderDate = orderDate;
 		this.orderStatus = orderStatus;
+		this.bill = bill;
 		this.customer = customer;
 	}
 
@@ -79,6 +91,7 @@ public class Order
 		// TODO Auto-generated constructor stub
 	}
 
+	
 
 	
 	
