@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import com.appfood.model.Bill;
 import com.appfood.model.Order;
+import com.appfood.repository.BillJpaRepository;
 import com.appfood.repository.OrderJpaRepository;
 import com.appfood.repository.OrderRepository;
 
@@ -17,6 +20,9 @@ public class OrderJpaService implements OrderRepository
 	
 	@Autowired
     private OrderJpaRepository orderJpaRepository;
+	
+	@Autowired
+	private BillJpaRepository billJpaRepository;
 	
 	@Override
    	public ArrayList<Order> getOrder() 
@@ -45,8 +51,10 @@ public class OrderJpaService implements OrderRepository
    	public Order addOrder(Order order) 
    	{
    		
-   		return orderJpaRepository.save(order);
-   	     // return order;
+   		 orderJpaRepository.save(order);
+   	     return order;
+   		
+   		
    	}
    	
 

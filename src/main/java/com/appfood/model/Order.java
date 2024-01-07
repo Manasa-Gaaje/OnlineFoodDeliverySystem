@@ -1,7 +1,6 @@
 package com.appfood.model;
 
 import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,8 +18,9 @@ import jakarta.persistence.Table;
 public class Order 
 {
 	
-	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+
 	@Column(name="orderId")
 	private int orderId;
 	
@@ -30,7 +30,8 @@ public class Order
 	@Column(name="orderStatus")
 	private String orderStatus;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
+	//@JoinColumn(name="billId")
 	private Bill bill;
 	
 	@ManyToOne
@@ -90,10 +91,7 @@ public class Order
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
-
 	
 	
 
-}
+	}

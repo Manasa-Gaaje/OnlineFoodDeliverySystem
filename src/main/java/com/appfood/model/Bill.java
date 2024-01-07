@@ -3,6 +3,8 @@ package com.appfood.model;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,53 +30,53 @@ public class Bill
 	@Column(name="billDate")
 	private Date billDate;
 	
+	
 	@Column(name="totalItem")
 	private int totalItem;
 	
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="orderId")
-	private Order order;
+	//@OneToOne(cascade=CascadeType.ALL)
+		//@JoinColumn(name="orderId")
+		//private Order order;
+
+
 
 	public int getBillId() {
 		return billId;
 	}
 
+
 	public void setBillId(int billId) {
 		this.billId = billId;
 	}
+
 
 	public Date getBillDate() {
 		return billDate;
 	}
 
+
 	public void setBillDate(Date billDate) {
 		this.billDate = billDate;
 	}
+
 
 	public int getTotalItem() {
 		return totalItem;
 	}
 
+
 	public void setTotalItem(int totalItem) {
 		this.totalItem = totalItem;
 	}
 
-	public Order getOrder() {
-		return order;
-	}
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
-	public Bill(int billId, Date billDate, int totalItem, Order order) {
+	public Bill(int billId, Date billDate, int totalItem) {
 		super();
 		this.billId = billId;
 		this.billDate = billDate;
 		this.totalItem = totalItem;
-		this.order = order;
 	}
+
 
 	public Bill() {
 		super();
@@ -84,14 +86,4 @@ public class Bill
 	
 	
 
-	
-	
-	
-	
-	
-
-	
-	
-	
-
-}
+	}

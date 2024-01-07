@@ -2,6 +2,8 @@ package com.appfood.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,8 @@ import com.appfood.repository.BillJpaRepository;
 import com.appfood.repository.BillRepository;
 import com.appfood.repository.OrderJpaRepository;
 
+import jakarta.persistence.EntityManager;
+
 
 @Service
 public class BillJpaService implements BillRepository 
@@ -21,6 +25,11 @@ public class BillJpaService implements BillRepository
 	
 	@Autowired
 	private OrderJpaRepository orderJpaRepository;
+	
+	
+	//@Autowired
+   // private EntityManager entityManager;
+
 	
 	
 	@Autowired
@@ -58,23 +67,29 @@ public class BillJpaService implements BillRepository
 		//billJpaRepository.save(bill);
 	     // return bill;
 		//Order order=orderJpaRepository.findById(orderId).get();
-		Order order=bill.getOrder();
-		int orderId=order.getOrderId();
-		Order order1=orderJpaRepository.findById(orderId).get();
-		bill.setOrder(order1);
+	
+		//Order order=bill.getOrder();
+		//int orderId=order.getOrderId();
+		//Order order1=orderJpaRepository.findById(orderId).get();
+		//bill.setOrder(order1);
+		billJpaRepository.save(bill);
+		return bill; 
+
 		//Order order = bill.getOrder();	    
 	    //if (order != null) 
 	   // {
 	        
-	     //   orderJpaRepository.save(order);
-	      //  bill.setOrder(order);
+	      // orderJpaRepository.save(order);
+	        //bill.setOrder(order);
 	      //  billJpaRepository.save(bill);
 
 	         
 	    //}
 		
-		billJpaRepository.save(bill);
-		return bill; 
+		
+		
+		
+		
 	}
 	
 
@@ -84,6 +99,7 @@ public class BillJpaService implements BillRepository
 		try
 		{
 			Bill existingBill=billJpaRepository.findById(billId).get();
+
 			if(bill.getBillDate()!=null)
 			{
 				existingBill.setBillDate(bill.getBillDate());
@@ -102,6 +118,7 @@ public class BillJpaService implements BillRepository
 		{
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
+
 	}
 		
 
